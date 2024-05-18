@@ -1,13 +1,13 @@
 extends Area2D
 var range = 10;
 var dmg = 5;
-var atkspd = 20;
+var atkspd = .333;
 var chmod = false;
 var locked = false;
 var enemies;
 var closest;
 var rotate;
-
+var timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	timer = timer + delta
 	enemies = self.get_overlapping_bodies()
 	if enemies.is_empty():
 		pass
@@ -23,7 +24,9 @@ func _process(delta):
 	for x in enemies:
 		if(x.distance_to(self.position)<closestDist):
 			closest = x;
-	fire(closest)
+	if(timer>=atkspd):
+		fire(closest)
+		timer = 0
 	pass
 	
 func fire(e: Node2D):
