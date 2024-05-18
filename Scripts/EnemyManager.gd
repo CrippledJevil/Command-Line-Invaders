@@ -1,5 +1,5 @@
 extends Area2D
-var gold = 0;
+var gold = 1;
 var wave = 0;
 var distance = 100;
 var rng = RandomNumberGenerator.new();
@@ -13,7 +13,7 @@ func _ready():
 func _physics_process(delta):
   if self.get_overlapping_areas().is_empty():
     wave += 1
-    for n in wave * 30:
+    for n in wave * 3:
       var rng = rng.randi_range(0, floor(wave / 5))
       # every 5 waves new
       # start with 1 type
