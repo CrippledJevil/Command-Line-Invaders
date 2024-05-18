@@ -1,7 +1,7 @@
 extends Area2D
 var gold = 0;
 var wave = 0;
-var distance = 10;
+var distance = 100;
 var rng = RandomNumberGenerator.new();
 const enemies = ["res://Scenes/Enemy.tscn","res://Scenes/Enemy.tscn","res://Scenes/Enemy.tscn"]
 
@@ -29,4 +29,5 @@ func spawn_enemy(enemy: int, mode: int, dist: int):
   var degrees = rng.randf_range(0, 120)-60
   spawned_enemy.position = Vector2(sin(degrees) * distance, cos(degrees) * distance)
   print(spawned_enemy.position)
+  add_child(spawned_enemy)
   pass
