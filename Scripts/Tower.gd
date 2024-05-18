@@ -25,7 +25,7 @@ func _process(delta):
   if enemies.is_empty():
     pass
   var closest = null;
-  var closestDist = 9999999;
+  var closestDist = 999_999_999;
   for x in enemies:
     if(x.position.distance_to(self.position)<closestDist):
       closest = x;

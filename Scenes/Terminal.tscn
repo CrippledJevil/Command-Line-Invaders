@@ -1,40 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://6oh4wjw4a05o"]
+[gd_scene load_steps=4 format=3 uid="uid://6oh4wjw4a05o"]
 
 [ext_resource type="Script" path="res://Scripts/ShellInput.gd" id="1_8a4dn"]
+[ext_resource type="FontFile" uid="uid://cvrndc02vrvtk" path="res://Assets/Font/IBM_Plex_Mono/IBMPlexMono-Regular.ttf" id="1_70osm"]
+[ext_resource type="Script" path="res://Scripts/Shell.gd" id="1_uwynh"]
 
-[node name="Control" type="Control"]
+[node name="Shell" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uwynh")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.567708
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "ash@Ash:~/"
-script = ExtResource("1_8a4dn")
-metadata/_edit_use_anchors_ = true
+color = Color(0.137255, 0.164706, 0.184314, 1)
 
-[node name="RepeatTimer" type="Timer" parent="TextEdit"]
-wait_time = 0.2
-
-[node name="TextEdit2" type="TextEdit" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.575521
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+theme_override_constants/separation = 0
 
-[connection signal="mouse_entered" from="TextEdit" to="TextEdit" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="TextEdit" to="TextEdit" method="_on_mouse_exited"]
-[connection signal="timeout" from="TextEdit/RepeatTimer" to="TextEdit" method="_on_repeat_timer_timeout"]
+[node name="HistoryWrapper" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Prompt" type="TextEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/background_color = Color(0.137255, 0.164706, 0.184314, 1)
+theme_override_colors/font_color = Color(0.576471, 0.615686, 0.647059, 1)
+theme_override_fonts/font = ExtResource("1_70osm")
+theme_override_font_sizes/font_size = 16
+text = "ash@Ash:~/"
+script = ExtResource("1_8a4dn")
+repeatSpeed = 0.2
+
+[node name="RepeatTimer" type="Timer" parent="VBoxContainer/Prompt"]
+wait_time = 0.2
+
+[connection signal="mouse_entered" from="VBoxContainer/Prompt" to="VBoxContainer/Prompt" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Prompt" to="VBoxContainer/Prompt" method="_on_mouse_exited"]
+[connection signal="timeout" from="VBoxContainer/Prompt/RepeatTimer" to="VBoxContainer/Prompt" method="_on_repeat_timer_timeout"]

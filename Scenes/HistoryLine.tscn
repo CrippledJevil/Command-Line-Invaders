@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dft4gxoyye6dw"]
+
+[ext_resource type="FontFile" uid="uid://cvrndc02vrvtk" path="res://Assets/Font/IBM_Plex_Mono/IBMPlexMono-Regular.ttf" id="1_u6ijj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2o1i"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 0.0
+content_margin_bottom = 2.0
+bg_color = Color(0.137255, 0.164706, 0.184314, 1)
+
+[node name="HistoryLine" type="RichTextLabel"]
+theme_override_colors/default_color = Color(0.576471, 0.615686, 0.647059, 1)
+theme_override_fonts/normal_font = ExtResource("1_u6ijj")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_j2o1i")
+fit_content = true

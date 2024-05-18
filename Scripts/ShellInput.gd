@@ -1,10 +1,12 @@
 extends TextEdit
 
 @onready var repeat_timer: Timer = $RepeatTimer
-@export var repeatDelay = 0.3
-@export var repeatSpeed = 0.3
+@export var repeatDelay: float = 0.3
+@export var repeatSpeed: float = 0.3
 
-@export var prompt: String = "ash@Ash:/$ "
+@export var prompt: String = "ash@Ash:{path}$ "
+var formatted_prompt: String = prompt
+@onready var Shell = $"../.."
 
 var mouseOver: bool = false
 var caretPos: Vector2i = Vector2i(0,0)
@@ -17,10 +19,13 @@ var capsLock: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  self.text = prompt
+  #init()
+  pass # Replace with function body.
+
+func init():
+  self.text = formatted_prompt
   caretPos.x = self.text.length()
   new_text = self.text
-  pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,6 +40,8 @@ func _input(event: InputEvent):
   if event is InputEventKey and event.is_pressed() and (event as InputEventKey).key_label == KEY_CAPSLOCK:
     capsLock = !capsLock
   if (self.has_focus()):
+    if event is InputEventKey and event.is_pressed() and (event as InputEventKey).key_label == KEY_ESCAPE:
+      Shell.queue_free()
     if event is InputEventMouseMotion:
       return # ignore mouse move
     #print("focused")
@@ -56,19 +63,21 @@ func _input(event: InputEvent):
         repeat_timer.stop()
       return
     if keyEvent.key_label == KEY_ENTER:
-      print(self.text.substr(prompt.length()))
-      new_text = prompt
-      self.text = prompt
+      print(self.text)
+      print(new_text)
+      Shell.cmd(self.text.trim_prefix(formatted_prompt))
+      new_text = formatted_prompt
+      self.text = formatted_prompt
       return
-    var key_har = process_text(keyEvent, false)
-    if not key_har.is_empty():
+    var key_char = process_text(keyEvent, false)
+    if not key_char.is_empty():
       caretOffset = Vector2i(0,0)
     var left: String = new_text.substr(0, caretPos.x)
     var right: String = new_text.substr(caretPos.x)
-    new_text = left + key_har + right
+    new_text = left + key_char + right
 
 func delete():
-  if caretPos.y == 0 and caretPos.x == prompt.length():
+  if caretPos.y == 0 and caretPos.x == formatted_prompt.length():
     return
   var left = new_text.substr(0, caretPos.x - 1)
   var right = new_text.substr(caretPos.x)
@@ -78,14 +87,14 @@ func delete():
 func _on_repeat_timer_timeout() -> void:
   if repeat_timer.wait_time == repeatDelay:
     repeat_timer.wait_time = repeatSpeed
-  print("timer")
+  #print("timer")
   repeat_timer.stop()
   var key_char = process_text(currentkey, true)
   var left: String = new_text.substr(0, caretPos.x)
   var right: String = new_text.substr(caretPos.x)
   new_text = left + key_char + right
   if caretOffset.x < 0:
-    caretPos.x = int(max(prompt.length() if caretPos.y == 0 else 0, caretPos.x + caretOffset.x))
+    caretPos.x = int(max(formatted_prompt.length() if caretPos.y == 0 else 0, caretPos.x + caretOffset.x))
   elif caretOffset.x > 0:
     caretPos.x = int(min(self.get_line(caretPos.y).length(), caretPos.x + caretOffset.x))
   repeat_timer.start()
@@ -97,9 +106,9 @@ func process_text(keyEvent: InputEventKey, repeating: bool) -> String:
   if letters.has(keyEvent.key_label):
     key_char = keyEvent.as_text()
     if isUppercase:
-      key_char = key_char.substr(6)
-    print(keyEvent.as_text())
-    print(keyEvent.key_label)
+      key_char = key_char.trim_prefix("Super+")
+    #print(keyEvent.as_text())
+    #print(keyEvent.key_label)
     if capsLock:
       isUppercase = not isUppercase
     if isUppercase:
@@ -164,7 +173,7 @@ func process_text(keyEvent: InputEventKey, repeating: bool) -> String:
         key_char = "/" if not isUppercase else "?"
       KEY_LEFT:
         if not repeating:
-          caretPos.x = int(max(prompt.length() if caretPos.y == 0 else 0, caretPos.x - 1))
+          caretPos.x = int(max(formatted_prompt.length() if caretPos.y == 0 else 0, caretPos.x - 1))
           repeat_timer.stop()
           currentkey = keyEvent
           repeat_timer.wait_time = repeatDelay
@@ -192,6 +201,6 @@ func process_text(keyEvent: InputEventKey, repeating: bool) -> String:
         repeat_timer.wait_time = repeatDelay
         repeat_timer.start()
       caretPos.x += 1
-    print(keyEvent.as_text())
-    print(keyEvent.key_label)
+    #print(keyEvent.as_text())
+    #print(keyEvent.key_label)
   return key_char
