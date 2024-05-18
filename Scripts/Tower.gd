@@ -29,7 +29,7 @@ func _process(delta):
     fire(closest)
     timer = 0
   pass
-  
+
 func fire(e: Node2D):
   var C:Vector2 = self.position;
   var B:Vector2 = Vector2(0, 1);
@@ -52,6 +52,6 @@ func upgrade():
 func damage(dmg:int):
   health-=dmg
   if(health<=0):
-    
+
     pass
   pass

@@ -30,5 +30,5 @@ func setDist(d:int):
   pass
 func newWave():
   WaveNum +=1
-  
+
   pass

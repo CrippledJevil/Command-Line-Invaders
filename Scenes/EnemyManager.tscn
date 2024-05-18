@@ -1,32 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqskniy2lw4vr"]
+[gd_scene load_steps=2 format=3 uid="uid://baha4qtdopswn"]
 
-[ext_resource type="Texture2D" uid="uid://dsxv0e226rxh0" path="res://Assets/tilesets/terrain tileset.png" id="1_xo40y"]
+[ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_ba7q8"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fmg4g"]
-texture = ExtResource("1_xo40y")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_ta73q"]
-sources/0 = SubResource("TileSetAtlasSource_fmg4g")
-
-[node name="Node2D" type="Node2D"]
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_ta73q")
-format = 2
+[node name="EnemyManager" type="Node2D"]
+script = ExtResource("1_ba7q8")
