@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqskniy2lw4vr"]
+
+[ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_bos37"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xamjn"]
+radius = 1e+12
+
+[node name="EnemySpawner" type="Area2D"]
+script = ExtResource("1_bos37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 2
+shape = SubResource("CircleShape2D_xamjn")

@@ -17,6 +17,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	enemies = self.get_overlapping_bodies()
+	if enemies.is_empty():
+		pass
 	var closestDist = 9999999;
 	for x in enemies:
 		if(x.distance_to(self.position)<closestDist):
@@ -35,5 +37,5 @@ func fire(e: Node2D):
 	if (e.position.x < c.x):
 		d = 360- d
 	rotate = floor(d/45);
-	
+	closest.damage(dmg);
 	pass
