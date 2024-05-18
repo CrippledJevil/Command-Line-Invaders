@@ -4,7 +4,7 @@ extends Area2D
 
 @export var health: float = 100
 @export var mode: int = 0
-@export var speed: float = 3
+@export var speed: float = 10
 @export var dmg: float = 0
 @export var target: Vector2 = Vector2(0, 0)
 var currentTarget = target
