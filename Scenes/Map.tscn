@@ -1,9 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://dqskniy2lw4vr"]
 
 [ext_resource type="Texture2D" uid="uid://kn8ymiwnfa33" path="res://Assets/Terrain/Terrain.png" id="1_m5ekw"]
-[ext_resource type="PackedScene" uid="uid://d2dn1523uexkp" path="res://Scenes/Water.tscn" id="2_o6elg"]
+[ext_resource type="PackedScene" uid="uid://cgfd22t0s5fv" path="res://Scenes/Water.tscn" id="2_o6elg"]
 [ext_resource type="PackedScene" uid="uid://baha4qtdopswn" path="res://Scenes/EnemyManager.tscn" id="3_tk1wx"]
-[ext_resource type="Script" path="res://Scenes/HUD.gd" id="4_r1yq0"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="4_sxs47"]
+[ext_resource type="FontFile" uid="uid://cy4fdok313bht" path="res://Assets/Font/PixelOperator8.ttf" id="5_7lqxn"]
 
 [sub_resource type="GDScript" id="GDScript_2tilh"]
 script/source = "extends Node2D
@@ -54,8 +55,6 @@ sources/2 = SubResource("TileSetScenesCollectionSource_iiwng")
 normal = Vector2(0, 1)
 distance = 144.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_x3k3g"]
-
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_2tilh")
 
@@ -78,13 +77,22 @@ shape = SubResource("WorldBoundaryShape2D_8vqul")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.25, 2.25)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("4_r1yq0")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("4_sxs47")
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = -257.0
-offset_top = -144.0
-offset_right = -217.0
-offset_bottom = -121.0
-text = "A"
-label_settings = SubResource("LabelSettings_x3k3g")
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -255.0
+offset_top = 126.0
+offset_right = -171.0
+offset_bottom = 142.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_7lqxn")
+theme_override_font_sizes/font_size = 16
+text = "Gold: 0"
