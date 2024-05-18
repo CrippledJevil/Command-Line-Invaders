@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var enemy_manager = %EnemyManager
+
 @export var health: float = 100
 @export var mode: int = 0
 @export var speed: float = 3
@@ -40,4 +42,5 @@ func attack(targ):
   targ.damage(dmg)
 
 func kill():
+  $EnemyManager.gold += 1
   self.queue_free()
