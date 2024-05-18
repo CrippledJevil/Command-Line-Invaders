@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7qrx2htju33o"
-path="res://.godot/imported/terminal building.png-5e5b118753ab362331dfce15cf4e5a08.ctex"
+path="res://.godot/imported/MainComputer.png-5507ac50c2295f2aa8bbfa8d36851d19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buildings/terminal building.png"
-dest_files=["res://.godot/imported/terminal building.png-5e5b118753ab362331dfce15cf4e5a08.ctex"]
+source_file="res://Assets/Buildings/MainComputer.png"
+dest_files=["res://.godot/imported/MainComputer.png-5507ac50c2295f2aa8bbfa8d36851d19.ctex"]
 
 [params]
 

@@ -50,7 +50,9 @@ script = ExtResource("1_sp2wt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uu7qg")
-frame_progress = 0.529666
+autoplay = "default"
+frame = 2
+frame_progress = 0.771883
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 4
