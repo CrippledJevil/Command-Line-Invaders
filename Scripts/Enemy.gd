@@ -8,7 +8,8 @@ var health = maxHealth
 @export var mode: int = 0
 @export var speed: float = 10
 @export var dmg: float = 0
-@export var target: Vector2 = Vector2(0, 0)
+#@export var target: Vector2 = Vector2(0, 0)
+var target: Vector2 = Vector2(0,0)
 var currentTarget = target
 
 # Called when the node enters the scene tree for the first time.
@@ -49,7 +50,8 @@ func damage(dmg:int):
     self.kill()
 
 func attack(targ):
-  targ.damage(dmg)
+  if targ.has_method("damage"):
+    targ.damage(dmg)
 
 func kill():
   #enemy_manager.gold += 1

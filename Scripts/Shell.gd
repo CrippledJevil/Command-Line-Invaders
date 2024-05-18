@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 @onready var history_wrapper = $VBoxContainer/HistoryWrapper
 @onready var prompt = $VBoxContainer/Prompt
@@ -77,7 +77,19 @@ func cmd(input: String):
       for folder in non_flags:
         if folder.is_empty():
           continue
+        var a = folder.split("/")
+        var b = a[a.size() - 1]
+        var c = b.split("_")
+        if c.size() != 3:
+          continue
+        if c[0] != "tower":
+          continue
         current.make_dir(folder)
+        print(c[1])
+        print(c[2])
+        var tm = self.get_parent().get_parent().get_child(0) as TileMap
+        tm.set_cell(1, Vector2i(int(c[1]) * 2, int(c[2]) * 2), 2, Vector2i(0,0), 2)
+
     "touch":
       for filename in non_flags:
         if filename.is_empty():

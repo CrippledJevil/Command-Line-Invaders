@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://im7msi27s3oh"]
+
+[ext_resource type="Script" path="res://Scripts/Computer.gd" id="1_jcg51"]
+[ext_resource type="Texture2D" uid="uid://7qrx2htju33o" path="res://Assets/Buildings/MainComputer.png" id="1_r8fga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k21wg"]
+size = Vector2(32, 32)
+
+[node name="Computer" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_jcg51")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_k21wg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
+texture = ExtResource("1_r8fga")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]

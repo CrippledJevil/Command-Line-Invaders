@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var tile_map = $"../TileMap"
+
 @export var spawn_distance = 100;
 
 var gold = 0;
@@ -13,6 +15,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+  var tiles = tile_map.get_children()
+  var target: Vector2 = Vector2(0,0)
+  for tile in tiles:
+    if tile is Area2D:
+      target = tile.position
+  for child in self.get_children():
+    if child is Area2D:
+      child.target = target
   if self.get_overlapping_areas().is_empty():
     wave += 1
     for n in wave * 3:
