@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ivei0khediv"
-path="res://.godot/imported/computer.png-201ba673bfa307c122eb882021c7e93e.ctex"
+uid="uid://q74watrcy1pa"
+path="res://.godot/imported/green bar.png-5896c6c14a66ece16974fe5202312f3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/buildings/computer.png"
-dest_files=["res://.godot/imported/computer.png-201ba673bfa307c122eb882021c7e93e.ctex"]
+source_file="res://Assets/HealthMeter/green bar.png"
+dest_files=["res://.godot/imported/green bar.png-5896c6c14a66ece16974fe5202312f3d.ctex"]
 
 [params]
 

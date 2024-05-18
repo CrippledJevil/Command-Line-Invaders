@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q74watrcy1pa"
-path="res://.godot/imported/green bar.png-ea3c59a8977ce0384e64e1c724b7458c.ctex"
+uid="uid://cr1qx5qm2t33b"
+path="res://.godot/imported/water 1.png-5ac786ae0292c33ed5817f463c36d3ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/healthmeter/green bar.png"
-dest_files=["res://.godot/imported/green bar.png-ea3c59a8977ce0384e64e1c724b7458c.ctex"]
+source_file="res://Assets/Water/water 1.png"
+dest_files=["res://.godot/imported/water 1.png-5ac786ae0292c33ed5817f463c36d3ef.ctex"]
 
 [params]
 

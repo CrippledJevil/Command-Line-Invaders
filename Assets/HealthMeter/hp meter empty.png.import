@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr1qx5qm2t33b"
-path="res://.godot/imported/water 1.png-e4d539b89a1f00fff31db6bd5e4e178c.ctex"
+uid="uid://ci6ceq57kht0d"
+path="res://.godot/imported/hp meter empty.png-ff24477da6c899a1d3edbb247706c9b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/water/water 1.png"
-dest_files=["res://.godot/imported/water 1.png-e4d539b89a1f00fff31db6bd5e4e178c.ctex"]
+source_file="res://Assets/HealthMeter/hp meter empty.png"
+dest_files=["res://.godot/imported/hp meter empty.png-ff24477da6c899a1d3edbb247706c9b6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci6ceq57kht0d"
-path="res://.godot/imported/hp meter empty.png-434d0b303a53bf4e4eee6f6cce45be48.ctex"
+uid="uid://cm8eelnx1f1nc"
+path="res://.godot/imported/Forward Enemy Walk.png-7ebad7cfc5ef71614d49fdaee666c158.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/healthmeter/hp meter empty.png"
-dest_files=["res://.godot/imported/hp meter empty.png-434d0b303a53bf4e4eee6f6cce45be48.ctex"]
+source_file="res://Assets/Enemy/Forward Enemy Walk.png"
+dest_files=["res://.godot/imported/Forward Enemy Walk.png-7ebad7cfc5ef71614d49fdaee666c158.ctex"]
 
 [params]
 
