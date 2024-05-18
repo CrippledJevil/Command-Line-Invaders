@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://ranshipduc4q"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_sp2wt"]
+[ext_resource type="Texture2D" uid="uid://hsxvkng41wb3" path="res://Assets/Enemy/EnemyWalking.png" id="2_8lna1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3xpv"]
+atlas = ExtResource("2_8lna1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfmjg"]
+atlas = ExtResource("2_8lna1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stovm"]
+atlas = ExtResource("2_8lna1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tshnh"]
+atlas = ExtResource("2_8lna1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uu7qg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3xpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfmjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stovm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tshnh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ek5e"]
+radius = 8.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_730yk"]
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_sp2wt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uu7qg")
+frame_progress = 0.529666
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 4
+shape = SubResource("CircleShape2D_8ek5e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_730yk")
+}
