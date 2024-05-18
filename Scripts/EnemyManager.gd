@@ -1,4 +1,6 @@
-extends Area2D@export var spawn_distance = 100;
+extends Area2D
+
+@export var spawn_distance = 100;
 
 var gold = 0;
 var wave = 0;
