@@ -1,3 +1,40 @@
-[gd_scene format=3 uid="uid://6oh4wjw4a05o"]
+[gd_scene load_steps=2 format=3 uid="uid://6oh4wjw4a05o"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/Terminal.gd" id="1_jqrkx"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.567708
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ash@Ash:~/"
+script = ExtResource("1_jqrkx")
+metadata/_edit_use_anchors_ = true
+
+[node name="RepeatTimer" type="Timer" parent="TextEdit"]
+wait_time = 0.2
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.575521
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="TextEdit" to="TextEdit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TextEdit" to="TextEdit" method="_on_mouse_exited"]
+[connection signal="timeout" from="TextEdit/RepeatTimer" to="TextEdit" method="_on_repeat_timer_timeout"]
