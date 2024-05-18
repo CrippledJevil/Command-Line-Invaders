@@ -1,4 +1,5 @@
 extends Area2D
+var gold = 0;
 var wave = 0;
 var distance = 10;
 var rng = RandomNumberGenerator.new();

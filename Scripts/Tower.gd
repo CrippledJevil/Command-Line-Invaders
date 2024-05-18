@@ -52,6 +52,5 @@ func upgrade():
 func damage(dmg:int):
   health-=dmg
   if(health<=0):
-
-    pass
+    self.queue_free()
   pass
