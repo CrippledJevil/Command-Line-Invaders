@@ -22,10 +22,10 @@ func _process(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-  var intersecting = self.get_overlapping_bodies()
+  var intersecting = self.get_overlapping_areas()
   if intersecting.size() > 0:
     currentTarget = (intersecting[0] as Node2D).position
-    self.attack(currentTarget)
+    self.attack((intersecting[0] as Area2D).get_parent())
   else:
     currentTarget = target
 
@@ -52,5 +52,6 @@ func attack(targ):
   targ.damage(dmg)
 
 func kill():
-  $EnemyManager.gold += 1
+  #enemy_manager.gold += 1
+  self.get_parent().gold += 1
   self.queue_free()

@@ -1,15 +1,142 @@
-[gd_scene load_steps=3 format=3 uid="uid://c82mnmorslomj"]
+[gd_scene load_steps=21 format=3 uid="uid://c82mnmorslomj"]
 
 [ext_resource type="Script" path="res://Scripts/Tower.gd" id="1_uhuuk"]
+[ext_resource type="Texture2D" uid="uid://cqf0fpoc7gsm" path="res://Assets/Buildings/Turret/east.png" id="2_mp7bj"]
+[ext_resource type="Texture2D" uid="uid://dttpfhe41a4mf" path="res://Assets/Buildings/Turret/southeast.png" id="3_abyeg"]
+[ext_resource type="Texture2D" uid="uid://vl02lc02pemb" path="res://Assets/Buildings/Turret/north.png" id="3_kyn23"]
+[ext_resource type="Texture2D" uid="uid://c1i116awq7jyg" path="res://Assets/Buildings/Turret/northeast.png" id="4_vovfy"]
+[ext_resource type="Texture2D" uid="uid://bkg7iuiewbquh" path="res://Assets/Buildings/Turret/northwest.png" id="5_06jn7"]
+[ext_resource type="Texture2D" uid="uid://h8jgoftigfbs" path="res://Assets/Buildings/Turret/south.png" id="6_p32pv"]
+[ext_resource type="Texture2D" uid="uid://bgxtnvcyhx85d" path="res://Assets/Buildings/Turret/southwest.png" id="8_k6pfc"]
+[ext_resource type="Texture2D" uid="uid://dyw1mwu44efn7" path="res://Assets/Buildings/Turret/west.png" id="9_400nm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_m7cwg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_on3xa"]
+size = Vector2(32, 32)
 
-[node name="Tower" type="Area2D"]
-collision_layer = 4
+[sub_resource type="AtlasTexture" id="AtlasTexture_0john"]
+atlas = ExtResource("2_mp7bj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajh5k"]
+atlas = ExtResource("3_kyn23")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mla6x"]
+atlas = ExtResource("4_vovfy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1p3u"]
+atlas = ExtResource("5_06jn7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1j12s"]
+atlas = ExtResource("6_p32pv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgm72"]
+atlas = ExtResource("3_abyeg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vt0es"]
+atlas = ExtResource("8_k6pfc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blvtk"]
+atlas = ExtResource("9_400nm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bqmj5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0john")
+}],
+"loop": true,
+"name": &"east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajh5k")
+}],
+"loop": true,
+"name": &"north",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mla6x")
+}],
+"loop": true,
+"name": &"north_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1p3u")
+}],
+"loop": true,
+"name": &"north_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1j12s")
+}],
+"loop": true,
+"name": &"south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgm72")
+}],
+"loop": true,
+"name": &"south_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vt0es")
+}],
+"loop": true,
+"name": &"south_west",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blvtk")
+}],
+"loop": true,
+"name": &"west",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o8u4e"]
+radius = 114.739
+
+[node name="Tower" type="Node2D"]
 script = ExtResource("1_uhuuk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visibility_layer = 2
-shape = SubResource("CircleShape2D_m7cwg")
+[node name="Building" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Building"]
+visibility_layer = 2
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_on3xa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Building"]
+position = Vector2(-8, -8)
+sprite_frames = SubResource("SpriteFrames_bqmj5")
+animation = &"north_west"
+autoplay = "east"
+
+[node name="Attack Range" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Range"]
+visible = false
+position = Vector2(-8, -8)
+shape = SubResource("CircleShape2D_o8u4e")

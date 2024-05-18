@@ -28,10 +28,6 @@ func spawn_enemy(enemy: int, mode: int):
   var spawned_enemy = enemy_scene.instantiate()
   spawned_enemy.set_mode(mode+1)
   var degrees = RNG.randf_range(0, 120)-60
-  print(degrees)
-  print(sin(degrees))
-  print(cos(degrees))
   spawned_enemy.position = Vector2(sin(deg_to_rad(degrees)) * spawn_distance, -cos(deg_to_rad(degrees)) * spawn_distance)
-  print(spawned_enemy.position)
   add_child(spawned_enemy)
   pass
