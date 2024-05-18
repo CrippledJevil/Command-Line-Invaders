@@ -8,6 +8,7 @@ var enemies;
 var closest;
 var rotate;
 var timer
+var health = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,4 +42,16 @@ func fire(e: Node2D):
 		d = 360- d
 	rotate = floor(d/45);
 	closest.damage(dmg);
+	pass
+
+func upgrade():
+	range +=10
+	health+=50
+	dmg +=5
+
+func damage(dmg:int):
+	health-=dmg
+	if(health<=0):
+		
+		pass
 	pass

@@ -22,7 +22,7 @@ func spawnEnemy(enemy:int, mode:int, dist:int):
 	spawnedEnemy.setMode(mode+1)
 	var degrees = rng.randf_range(0, 120)-60
 	spawnedEnemy.position = Vector2(sin(degrees)*distance, cos(degrees)*distance)
-	spawnedEnemy.setDir(degrees-180);
+	spawnedEnemy.setPos(degrees, distance);
 	pass
 func setDist(d:int):
 	distance=d
