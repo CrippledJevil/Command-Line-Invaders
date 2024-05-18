@@ -2,7 +2,9 @@ extends Area2D
 
 @onready var enemy_manager = %EnemyManager
 
-@export var health: float = 100
+@onready var health_bar = $HealthBar
+@export var maxHealth: float = 100
+var health = maxHealth
 @export var mode: int = 0
 @export var speed: float = 10
 @export var dmg: float = 0
@@ -11,7 +13,12 @@ var currentTarget = target
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  health_bar.value = health
+  health_bar.max_value = maxHealth
   pass # Replace with function body.
+
+func _process(delta):
+  health_bar.value = health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -31,7 +38,7 @@ func _physics_process(delta):
 
 func set_mode(mde:int):
   mode = mde;
-  health = 50 * mode
+  #health = 50 * mode
   #speed = 3 * mode
   dmg = 5 * mode
   pass

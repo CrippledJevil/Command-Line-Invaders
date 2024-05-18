@@ -13,7 +13,6 @@ script/source = "extends Node2D
 func _ready():
   pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   #print(Engine.get_frames_per_second())
@@ -51,8 +50,9 @@ scenes/1/scene = ExtResource("2_o6elg")
 sources/1 = SubResource("TileSetAtlasSource_aoxhp")
 sources/2 = SubResource("TileSetScenesCollectionSource_iiwng")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_56b1c"]
-radius = 698.367
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8vqul"]
+normal = Vector2(0, 1)
+distance = 144.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_x3k3g"]
 
@@ -73,8 +73,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyManager"]
 position = Vector2(1, 0)
-scale = Vector2(1000, 1000)
-shape = SubResource("CircleShape2D_56b1c")
+shape = SubResource("WorldBoundaryShape2D_8vqul")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.25, 2.25)
