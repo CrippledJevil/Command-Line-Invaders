@@ -2,7 +2,7 @@ extends Area2D
 var WaveNum = 0;
 var distance = 10;
 var rng = RandomNumberGenerator.new();
-var enemies = [$Enemy1, $enemy2, $enemy3];
+const enemies = ["res://Scenes/Enemy1.tscn", "res://Scenes/Enemy2.tscn", "res://Scenes/Enemy3.tscn"];
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +18,7 @@ func _process(delta):
       spawnEnemy(rng%3, rng/3, distance)
   pass
 func spawnEnemy(enemy:int, mode:int, dist:int):
-  var scene = preload("res://Scenes/Enemy1.tscn")
+  var scene = load(enemies[enemy])
   var spawnedEnemy = scene.instantiate()
   spawnedEnemy.setMode(mode+1)
   var degrees = rng.randf_range(0, 120)-60
