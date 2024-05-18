@@ -60,3 +60,5 @@ shape = SubResource("CircleShape2D_8ek5e")
 libraries = {
 "": SubResource("AnimationLibrary_730yk")
 }
+
+[node name="Timer" type="Timer" parent="."]

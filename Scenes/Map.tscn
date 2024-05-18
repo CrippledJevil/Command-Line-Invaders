@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqskniy2lw4vr"]
+[gd_scene load_steps=6 format=3 uid="uid://dqskniy2lw4vr"]
 
 [ext_resource type="Texture2D" uid="uid://dsxv0e226rxh0" path="res://Assets/Terrain/terrain tileset.png" id="1_07gm8"]
+[ext_resource type="Script" path="res://Scenes/Map.gd" id="1_od1fw"]
+[ext_resource type="PackedScene" uid="uid://baha4qtdopswn" path="res://Scenes/EnemyManager.tscn" id="3_tk1wx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fmg4g"]
 texture = ExtResource("1_07gm8")
@@ -26,7 +28,10 @@ texture = ExtResource("1_07gm8")
 sources/0 = SubResource("TileSetAtlasSource_fmg4g")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_od1fw")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ta73q")
 format = 2
+
+[node name="EnemyManager" parent="." instance=ExtResource("3_tk1wx")]

@@ -1,49 +1,43 @@
 extends Area2D
-var health
-var mode
-var speed
-var dmg
-var direction
-var building
-var timer = 0
-var distance
+
+@export var health: float = 100
+@export var mode: int = 0
+@export var speed: float = 3
+@export var dmg: float = 0
+@export var target: Vector2 = Vector2(0, 0)
+var currentTarget = target
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
   pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-  timer+=delta
-  if(self.get_overlapping_bodies().is_empty()):
-    if(timer>=100):
-      self.position = Vector2(sin(direction)*(distance-speed), cos(direction)*distance-speed);
-    pass
-  building=self.get_overlapping_bodies()[0]
-  self.attack()
-  pass
+func _physics_process(delta):
+  var intersecting = self.get_overlapping_bodies()
+  if intersecting.size() > 0:
+    currentTarget = (intersecting[0] as Node2D).position
+    self.attack(currentTarget)
+  else:
+    currentTarget = target
 
-func setMode(mde:int):
+  var distance = Vector2(target.x - self.position.x, target.y - self.position.y)
+  self.position.x += min(speed, abs(distance.x)) * sign(distance.x) * delta
+  self.position.y += min(speed, abs(distance.y)) * sign(distance.y) * delta
+
+func set_mode(mde:int):
   mode = mde;
-  health = 50*mode
-  speed = 3*mode
-  dmg = 5*mode
+  health = 50 * mode
+  speed = 3 * mode
+  dmg = 5 * mode
   pass
 
 func damage(dmg:int):
   health -= dmg
   if health<=0:
-    self.death()
-  pass
+    self.kill()
 
-func setPos(dir:int, dist:int):
-  direction = dir
-  distance = dist
-  pass
+func attack(targ):
+  targ.damage(dmg)
 
-func attack():
-  self.get_overlapping_bodies()[0].damage(dmg)
-  pass
-
-func death():
-  pass
+func kill():
+  self.queue_free()
