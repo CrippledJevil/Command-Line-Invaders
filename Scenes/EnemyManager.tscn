@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Scripts/EnemyManager.gd" id="1_ba7q8"]
 
-[node name="EnemyManager" type="Node2D"]
+[node name="EnemyManager" type="Area2D"]
 script = ExtResource("1_ba7q8")

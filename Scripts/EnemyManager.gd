@@ -2,7 +2,7 @@ extends Area2D
 var wave = 0;
 var distance = 10;
 var rng = RandomNumberGenerator.new();
-const enemies = ["res://Scenes/Enemy1.tscn", "res://Scenes/Enemy2.tscn", "res://Scenes/Enemy3.tscn"];
+const enemies = ["res://Scenes/Enemy.tscn","res://Scenes/Enemy.tscn","res://Scenes/Enemy.tscn"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,37 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqskniy2lw4vr"]
+[gd_scene load_steps=9 format=3 uid="uid://dqskniy2lw4vr"]
 
-[ext_resource type="Texture2D" uid="uid://dsxv0e226rxh0" path="res://Assets/Terrain/terrain tileset.png" id="1_07gm8"]
-[ext_resource type="Script" path="res://Scenes/Map.gd" id="1_od1fw"]
+[ext_resource type="Texture2D" uid="uid://kn8ymiwnfa33" path="res://Assets/Terrain/Terrain.png" id="1_m5ekw"]
+[ext_resource type="PackedScene" uid="uid://cgfd22t0s5fv" path="res://Scenes/Water.tscn" id="2_o6elg"]
 [ext_resource type="PackedScene" uid="uid://baha4qtdopswn" path="res://Scenes/EnemyManager.tscn" id="3_tk1wx"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fmg4g"]
-texture = ExtResource("1_07gm8")
+[sub_resource type="GDScript" id="GDScript_2tilh"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+  pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+  pass
+"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aoxhp"]
+texture = ExtResource("1_m5ekw")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
+6:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
 5:1/0 = 0
+6:1/0 = 0
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
 3:2/0 = 0
 4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_iiwng"]
+scenes/1/scene = ExtResource("2_o6elg")
 
 [sub_resource type="TileSet" id="TileSet_ta73q"]
-sources/0 = SubResource("TileSetAtlasSource_fmg4g")
+sources/1 = SubResource("TileSetAtlasSource_aoxhp")
+sources/2 = SubResource("TileSetScenesCollectionSource_iiwng")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cr6bm"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_od1fw")
+script = SubResource("GDScript_2tilh")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ta73q")
 format = 2
+layer_0/tile_data = PackedInt32Array(-4, 2, 65536, 196608, 2, 65536, -65533, 2, 65536, -65529, 2, 65536, -8, 2, 65536, -327680, 2, 65536, -327673, 2, 65536, 196615, 2, 65536, 262136, 2, 65536, -262152, 2, 65536)
 
 [node name="EnemyManager" parent="." instance=ExtResource("3_tk1wx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyManager"]
+shape = SubResource("WorldBoundaryShape2D_cr6bm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -8)
+zoom = Vector2(4.5, 4.5)
