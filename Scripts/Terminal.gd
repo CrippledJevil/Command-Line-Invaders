@@ -57,6 +57,7 @@ func _input(event: InputEvent):
       return
     if keyEvent.key_label == KEY_ENTER:
       print(self.text.substr(prompt.length()))
+      new_text = prompt
       self.text = prompt
       return
     var char = process_text(keyEvent, false)
