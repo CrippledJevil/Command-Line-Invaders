@@ -11,10 +11,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-  print(self.get_overlapping_areas())
   if self.get_overlapping_areas().is_empty():
     wave += 1
-    for n in wave * 3:
+    for n in wave * 30:
       var rng = rng.randi_range(0, floor(wave / 5))
       # every 5 waves new
       # start with 1 type
@@ -27,7 +26,10 @@ func spawn_enemy(enemy: int, mode: int, dist: int):
   var spawned_enemy = enemy_scene.instantiate()
   spawned_enemy.set_mode(mode+1)
   var degrees = rng.randf_range(0, 120)-60
-  spawned_enemy.position = Vector2(sin(degrees) * distance, cos(degrees) * distance)
+  print(degrees)
+  print(sin(degrees))
+  print(cos(degrees))
+  spawned_enemy.position = Vector2(sin(deg_to_rad(degrees)) * distance, -cos(deg_to_rad(degrees)) * distance)
   print(spawned_enemy.position)
   add_child(spawned_enemy)
   pass
