@@ -66,5 +66,3 @@ shape = SubResource("WorldBoundaryShape2D_cr6bm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.25, 2.25)
-limit_smoothed = true
-position_smoothing_enabled = true
